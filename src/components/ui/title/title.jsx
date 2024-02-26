@@ -3,6 +3,7 @@ import {StyledTitle} from './styles';
 export const TitleSize = {
   BIG: 'big',
   SMALL: 'small',
+  TABLE: 'table',
   DEFAULT: '',
 };
 
@@ -15,9 +16,9 @@ export const TitleLevel = {
   H6: '6',
 };
 
-export default function Title({level = 1, size, children, className}) {
+export default function Title({level = 1, size, children}) {
   return (
-    <StyledTitle as={`h${level}`} $size={size} className={className}>
+    <StyledTitle as={`h${level}`} $size={size}>
       {children}
     </StyledTitle>
   );

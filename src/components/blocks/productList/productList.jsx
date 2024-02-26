@@ -11,6 +11,14 @@ const ProductList = () => {
             Каталог ювелирных изделий
           </Title>
           <ul>
+          <li>
+              <div>
+                <span>Название</span>
+                <span>Цена</span>
+                <span>Бренд</span>
+                <span>ID</span>
+              </div>
+            </li>
             {products.map((product) => (
               <ProductItem key={product.id} product={product} />
             ))}

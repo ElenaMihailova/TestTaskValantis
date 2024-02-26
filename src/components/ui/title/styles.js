@@ -6,7 +6,7 @@ export const StyledTitle = styled.h1`
   padding: 0;
   font-weight: 700;
   font-size: 36px;
-  line-height: 41px;
+  line-height: 100%;
   font-size: ${(props) => {
     let fontSize = '36px';
     if (props.$size === TitleSize.BIG) {
@@ -14,6 +14,9 @@ export const StyledTitle = styled.h1`
     }
     if (props.$size === TitleSize.SMALL) {
       fontSize = '28px';
+    }
+    if (props.$size === TitleSize.TABLE) {
+      fontSize = '20px';
     }
     return fontSize;
   }};
