@@ -1,6 +1,6 @@
 import Title, {TitleLevel, TitleSize} from '../../ui/title/title';
 import ProductItem from '../productItem/productItem';
-import ProductDataProvider from '../../../dataProviders/productDataProviders';
+import ProductDataProvider from '../../dataProviders/productDataProviders';
 
 const ProductList = () => {
   return (
