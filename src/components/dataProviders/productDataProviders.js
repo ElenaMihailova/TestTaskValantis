@@ -4,28 +4,33 @@ import {getData} from '../helpers/getData';
 export const ProductDataContext = createContext();
 
 const ProductDataProvider = ({children}) => {
-  const [products, setProducts]=useState([]);
-  const [currentPage, setCurrentPage]=useState(1);
+  const [products, setProducts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const fetchProductData = async () => {
-      try {
-        const uniqueProducts = await getData();
-        setProducts(uniqueProducts);
-        console.log(uniqueProducts);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchProductData();
-    console.log(currentPage)
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    setIsLoading(true);
+    try {
+      getData(currentPage)
+        .then(uniqueProducts => {
+          setProducts(uniqueProducts);
+          setIsLoading(false);
+          console.log(uniqueProducts);
+          console.log(currentPage)
+        })
+        .catch(error => {
+          console.error('Error fetching data:', error);
+          setIsLoading(false);
+        });
+    } finally {
+      setIsLoading(false);
+    }
   }, [currentPage]);
 
   return (
-    <ProductDataContext.Provider value={{products, setCurrentPage, currentPage}}>
+    <ProductDataContext.Provider
+      value={{products, setCurrentPage, currentPage, isLoading}}
+    >
       {children}
     </ProductDataContext.Provider>
   );

@@ -37,7 +37,7 @@ function Filter({applyFilters}) {
   return (
     <Styled.Wrapper>
       <Styled.FieldWrapper>
-        {Object.entries(inputState).map(([id, isFilled]) => (
+        {Object.entries(inputState).map(([id, isfilled]) => (
           <Styled.Field key={id}>
             <Styled.Input
               type='text'
@@ -46,7 +46,7 @@ function Filter({applyFilters}) {
               onFocus={handleInputFocus}
               onBlur={handleInputBlur}
             />
-            <Styled.Label htmlFor={id} isFilled={isFilled}>
+            <Styled.Label htmlFor={id} isfilled={isfilled}>
               {id === 'brand' ? 'Бренд' : id === 'name' ? 'Название' : 'Цена'}
             </Styled.Label>
           </Styled.Field>

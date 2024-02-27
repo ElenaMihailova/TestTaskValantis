@@ -31,11 +31,11 @@ export const Label = styled.label`
   position: absolute;
   left: 10px;
   pointer-events: none;
-  top: ${({ isFilled }) => (isFilled ? '-0.5rem' : '50%')};
-  transform: ${({ isFilled }) =>
-    isFilled ? 'translateY(-50%)' : 'translateY(0)'};
+  top: ${({ isfilled }) => (isfilled ? '-0.5rem' : '50%')};
+  transform: ${({ isfilled }) =>
+    isfilled ? 'translateY(-50%)' : 'translateY(0)'};
   transition: top 0.3s, transform 0.3s;
-  color: ${({ isFilled }) => (isFilled ? `${(props) => props.theme.colorBlackForText}` : `${(props) => props.theme.colorWhite}`)};
+  color: ${({ isfilled }) => (isfilled ? `${(props) => props.theme.colorBlackForText}` : `${(props) => props.theme.colorWhite}`)};
 `;
 export const Input = styled.input`
   display: block;

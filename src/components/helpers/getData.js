@@ -2,7 +2,7 @@ import axios from 'axios';
 import md5 from 'md5-js';
 import {API_URL, PASSWORD} from '../../const';
 
-export const getData = async () => {
+export const getData = async (offset) => {
   try {
     const timestamp = new Date().toISOString().split('T')[0].replace(/-/g, '');
     const authString = md5(`${PASSWORD}_${timestamp}`);
@@ -12,7 +12,7 @@ export const getData = async () => {
       data: {result: ids},
     } = await axios.post(
       API_URL,
-      {action: 'get_ids', params: {limit: 10}},
+      {action: 'get_ids', params: {limit: 50, offset}},
       {headers}
     );
 
