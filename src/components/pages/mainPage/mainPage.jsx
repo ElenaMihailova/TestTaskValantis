@@ -1,7 +1,7 @@
+import {useState} from 'react';
 import ProductList from '../../blocks/productList/productList';
 import Pagination from '../../blocks/pagination/pagination';
 import Filter from '../../blocks/filter//filter';
-import {useState} from 'react';
 
 import * as Styled from './style';
 

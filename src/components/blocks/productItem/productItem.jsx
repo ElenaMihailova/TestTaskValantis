@@ -5,7 +5,7 @@ import * as Styled from './style';
 
 function ProductItem({product}) {
   const renderBrand = (brand) => {
-    return brand ? `${brand}` : 'Не указан';
+    return brand ? `${brand}` : '-';
   };
 
   return (

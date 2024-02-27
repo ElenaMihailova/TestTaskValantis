@@ -8,10 +8,9 @@ export const Wrapper = styled.div`
   left: 0;
   right: 0;
   width: 100%;
-  padding-top: ${(props) =>props.theme.wrapPadding};
-  padding-bottom: ${(props) =>props.theme.wrapPadding};
-  background-color: ${(props) =>props.theme.colorForLightBackground};
-
+  padding-top: ${(props) => props.theme.wrapPadding};
+  padding-bottom: ${(props) => props.theme.wrapPadding};
+  background-color: ${(props) => props.theme.colorForLightBackground};
 `;
 export const List = styled.ul`
   list-style-type: none;

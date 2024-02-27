@@ -9,6 +9,6 @@ export const DefaultTheme = {
   indent: '20px',
   fontFamily: '"Plus Jakarta Sans", "Arial", sans-serif',
   fontSizeDefault: '16px',
-  blockHeight: '80px',
+  blockHeight: '100px',
   pageWidth: '1280px',
 };
