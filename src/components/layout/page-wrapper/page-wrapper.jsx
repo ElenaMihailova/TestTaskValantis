@@ -1,14 +1,12 @@
-import Header from '../header/header';
 import MainPage from '../../pages/mainPage/mainPage';
-import './style.css';
+import * as Styled from './style';
 
-export default function PageWrapper({...prop}) {
+export default function PageWrapper() {
   return (
     <>
-      <Header />
-      <main className='page-wrapper__main'>
+      <Styled.PageWrapper>
         <MainPage />
-      </main>
+      </Styled.PageWrapper>
     </>
   );
 }

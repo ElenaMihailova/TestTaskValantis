@@ -10,8 +10,11 @@ function ProductItem({product}) {
 
   return (
     <Styled.Wrapper>
-      <Title size={TitleSize.TABLE} level={TitleLevel.H3}> {product.product} </Title>
-      <Styled.Info> {formatPrice(product.price)} </Styled.Info>
+      <Title size={TitleSize.TABLE} level={TitleLevel.H3}>
+        {' '}
+        {product.product}{' '}
+      </Title>
+      <Styled.Price> {formatPrice(product.price)} </Styled.Price>
       <Styled.Info> {renderBrand(product.brand)} </Styled.Info>
       <Styled.Info> {product.id} </Styled.Info>
     </Styled.Wrapper>

@@ -1,12 +1,9 @@
 const formatPrice = (price) => {
-  const priceString = price.toString();
-  if (priceString.includes(' ')) {
-    return priceString;
-  } else {
-    const lastThreeDigits = priceString.slice(-3);
-    const restOfDigits = priceString.slice(0, -3);
-    return `${restOfDigits} ${lastThreeDigits}`;
-  }
+  const priceString = price.toFixed(2);
+  const parts = priceString.split('.');
+  const integerPart = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+  const decimalPart = parts[1];
+  return `${integerPart},${decimalPart}`; 
 };
 
 export default formatPrice;

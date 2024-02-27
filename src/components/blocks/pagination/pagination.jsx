@@ -1,10 +1,40 @@
+import React from 'react';
+import * as Styled from './style.js';
 
-function Pagination() {
+const Pagination = ({
+  currentPage,
+  onNextPageClick,
+  onPrevPageClick,
+}) => {
   return (
-    <div>
-      Пагинация
-    </div>
-  )
-}
+    <Styled.Wrapper>
+      <Styled.List>
+        <Styled.Item>
+          <Styled.Button
+            type='button'
+            onClick={onPrevPageClick}
+            disabled={currentPage === 1}
+          >
+            &lt;
+          </Styled.Button>
+        </Styled.Item>
+        <Styled.Item>
+          <Styled.Button>
+            {currentPage} 
+          </Styled.Button>
+        </Styled.Item>
 
-export default Pagination;
+        <Styled.Item>
+          <Styled.Button
+            type='button'
+            onClick={onNextPageClick}
+          >
+            &gt;
+          </Styled.Button>
+        </Styled.Item>
+      </Styled.List>
+    </Styled.Wrapper>
+  );
+};
+
+export default React.memo(Pagination);

@@ -1,10 +1,13 @@
-import React, {useState, useEffect} from 'react';
+import {useState, useEffect, createContext} from 'react';
 import axios from 'axios';
 import md5 from 'md5-js';
 import {API_URL, PASSWORD} from '../../const';
 
+export const ProductDataContext = createContext();
+
 const ProductDataProvider = ({children}) => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts]=useState([]);
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,12 +38,15 @@ const ProductDataProvider = ({children}) => {
             {headers}
           );
 
-          const uniqueProducts = items.filter(
-            (product, index, self) =>
-              self.findIndex((p) => p.id === product.id) === index
-          );
+          const uniqueProductsMap = {};
+          items.forEach((product) => {
+            uniqueProductsMap[product.id] = product;
+          });
+
+          const uniqueProducts = Object.values(uniqueProductsMap);
 
           setProducts(uniqueProducts);
+          console.log(uniqueProducts);
         }
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -50,7 +56,8 @@ const ProductDataProvider = ({children}) => {
           error.response.data.error
         ) {
           console.log('API Error:', error.response.data.error);
-          fetchData();
+        } else {
+          console.log('Network Error:', error.message);
         }
       }
     };
@@ -60,7 +67,11 @@ const ProductDataProvider = ({children}) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return <>{children(products)}</>;
+  return (
+    <ProductDataContext.Provider value={products}>
+      {children}
+    </ProductDataContext.Provider>
+  );
 };
 
 export default ProductDataProvider;

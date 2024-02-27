@@ -4,7 +4,13 @@ import {TitleSize} from './title';
 export const StyledTitle = styled.h1`
   margin: 0;
   padding: 0;
-  font-weight: 700;
+  font-weight: ${(props) => {
+    let fontWeight = 400;
+    if (props.$size === TitleSize.BIG || props.$size === TitleSize.SMALL) {
+      fontWeight = 700; 
+    }
+    return fontWeight;
+  }};
   font-size: 36px;
   line-height: 100%;
   font-size: ${(props) => {
@@ -16,7 +22,7 @@ export const StyledTitle = styled.h1`
       fontSize = '28px';
     }
     if (props.$size === TitleSize.TABLE) {
-      fontSize = '20px';
+      fontSize = '18px';
     }
     return fontSize;
   }};

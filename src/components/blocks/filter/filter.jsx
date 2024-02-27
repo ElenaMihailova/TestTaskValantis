@@ -1,12 +1,13 @@
 import Title, {TitleLevel, TitleSize} from '../../ui/title/title';
+import * as Styled from './style';
 
 function Filter() {
   return (
-    <div>
+    <Styled.Wrapper>
       <Title level={TitleLevel.H2} size={TitleSize.SMALL}>
         Фильтр
       </Title>
-    </div>
+    </Styled.Wrapper>
   );
 }
 
