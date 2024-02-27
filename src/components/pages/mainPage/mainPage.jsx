@@ -1,12 +1,13 @@
-import {useState} from 'react';
+import {useState, useContext} from 'react';
 import ProductList from '../../blocks/productList/productList';
 import Pagination from '../../blocks/pagination/pagination';
 import Filter from '../../blocks/filter//filter';
+import {ProductDataContext} from '../../dataProviders/productDataProviders';
 
 import * as Styled from './style';
 
 function MainPage() {
-  const [currentPage, setCurrentPage] = useState(1);
+  const {currentPage, setCurrentPage} = useContext(ProductDataContext);
 
   const handleNextPageClick = () => {
     setCurrentPage(currentPage + 1);
