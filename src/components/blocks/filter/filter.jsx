@@ -15,7 +15,6 @@ function Filter({applyFilters}) {
       [id]: value.trim() !== '',
     }));
     applyFilters(inputState);
-    console.log(inputState);
   };
 
   const handleInputFocus = (e) => {
@@ -46,7 +45,7 @@ function Filter({applyFilters}) {
               onFocus={handleInputFocus}
               onBlur={handleInputBlur}
             />
-            <Styled.Label htmlFor={id} isfilled={isfilled}>
+            <Styled.Label htmlFor={id} isfilled={isfilled.toString()}>
               {id === 'brand' ? 'Бренд' : id === 'name' ? 'Название' : 'Цена'}
             </Styled.Label>
           </Styled.Field>

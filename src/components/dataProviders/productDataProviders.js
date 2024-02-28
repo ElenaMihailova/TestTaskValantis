@@ -15,8 +15,6 @@ const ProductDataProvider = ({children}) => {
         .then(uniqueProducts => {
           setProducts(uniqueProducts);
           setIsLoading(false);
-          console.log(uniqueProducts);
-          console.log(currentPage)
         })
         .catch(error => {
           console.error('Error fetching data:', error);

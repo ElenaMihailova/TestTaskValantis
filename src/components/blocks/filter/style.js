@@ -14,14 +14,13 @@ export const Wrapper = styled.div`
   background-color: ${(props) => props.theme.colorForLightBackground};
 `;
 
-export const FieldWrapper=styled.div`
-display: flex;
-align-items: center;
-width: 100%;
-max-width: 1280px;
-margin: 0 auto;
-justify-content: space-around;
-
+export const FieldWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  justify-content: space-around;
 `;
 export const Field = styled.div`
   position: relative;
@@ -31,12 +30,16 @@ export const Label = styled.label`
   position: absolute;
   left: 10px;
   pointer-events: none;
-  top: ${({ isfilled }) => (isfilled ? '-0.5rem' : '50%')};
-  transform: ${({ isfilled }) =>
-    isfilled ? 'translateY(-50%)' : 'translateY(0)'};
+  top: ${({isfilled}) => (isfilled === 'true' ? '-0.5rem' : '50%')};
+  transform: ${({isfilled}) =>
+    isfilled === 'true' ? 'translateY(-50%)' : 'translateY(0)'};
   transition: top 0.3s, transform 0.3s;
-  color: ${({ isfilled }) => (isfilled ? `${(props) => props.theme.colorBlackForText}` : `${(props) => props.theme.colorWhite}`)};
+  color: ${({isfilled}) =>
+    isfilled === 'true'
+      ? `${(props) => props.theme.colorBlackForText}`
+      : `${(props) => props.theme.colorWhite}`};
 `;
+
 export const Input = styled.input`
   display: block;
   width: 100%;
