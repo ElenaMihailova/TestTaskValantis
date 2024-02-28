@@ -1,5 +1,5 @@
 import {useState, useEffect, createContext} from 'react';
-import {getProducts, getBrands} from '../helpers/getData';
+import {getProducts, getBrands, filterProducts} from '../helpers/getData';
 
 export const ProductDataContext = createContext();
 
@@ -37,9 +37,21 @@ const ProductDataProvider = ({children}) => {
       });
   }, []);
 
+  const handleFilterProducts = async (filterField, filterValue) => {
+    setIsLoading(true);
+    try {
+      const filteredProducts = await filterProducts(filterField, filterValue);
+      setProducts(filteredProducts);
+    } catch (error) {
+      console.error('Error filtering products:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <ProductDataContext.Provider
-      value={{products, brands, setCurrentPage, currentPage, isLoading}}
+      value={{products, brands, setCurrentPage, currentPage, isLoading, filterProducts: handleFilterProducts}}
     >
       {children}
     </ProductDataContext.Provider>

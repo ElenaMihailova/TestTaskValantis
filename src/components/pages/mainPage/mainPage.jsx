@@ -7,7 +7,7 @@ import {ProductDataContext} from '../../dataProviders/productDataProviders';
 import * as Styled from './style';
 
 function MainPage() {
-  const {currentPage, setCurrentPage, isLoading} = useContext(
+  const {currentPage, setCurrentPage, isLoading, filterProducts} = useContext(
     ProductDataContext
   );
 
@@ -25,7 +25,7 @@ function MainPage() {
 
   return (
     <Styled.Wrapper>
-      <Filter />
+      <Filter applyFilters={filterProducts}/>
       <ProductList />
       <Pagination
         currentPage={currentPage}

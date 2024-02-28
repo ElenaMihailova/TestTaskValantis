@@ -22,25 +22,26 @@ export const Item = styled.li`
   margin-right: 5px;
   width: 3rem;
   height: 3rem;
-
-  .is-active {
-    background-color: #007bff;
-    color: #fff;
-    border-color: #007bff;
-  }
 `;
 
 export const Button = styled.button`
   text-decoration: none;
-  color: #333;
+  color: ${(props) => props.theme.colorBlackForText};
   padding: 5px 10px;
   border: 1px solid #ccc;
   border-radius: 3px;
   width: 100%;
   height: 100%;
   font-size: 16px;
+  cursor: pointer;
+  background-color: ${(props) => props.theme.colorForButton};
+  transition: background-color 0.5s;
 
-  &::hover {
+  &:hover {
     background-color: #f0f0f0;
+  }
+
+  &:disabled {
+    background-color: transparent;
   }
 `;

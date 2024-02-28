@@ -1,8 +1,9 @@
 import {useState} from 'react';
 import FilterBrand from './filterBrand';
+
 import * as Styled from './style';
 
-function Filter({applyFilters}) {
+function Filter({ applyFilters }) {
   const [inputState, setInputState] = useState({
     name: false,
     price: false,
@@ -33,10 +34,11 @@ function Filter({applyFilters}) {
     }));
   };
 
+
   return (
     <Styled.Wrapper>
       <Styled.FieldWrapper>
-        <FilterBrand/>
+        <FilterBrand />
         {Object.entries(inputState).map(
           ([id, isfilled]) =>
             id !== 'brand' && (

@@ -4,6 +4,7 @@ export const DefaultTheme = {
   colorGray: '#B8B8B8',
   colorForLightBackground: '#F5F5F5',
   colorForDarkBackground: '#ffeead',
+  colorForButton: '#D9D9D9',
   pagePadding: '2%',
   wrapPadding: '1%',
   indent: '20px',

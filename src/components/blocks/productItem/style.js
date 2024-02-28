@@ -4,7 +4,7 @@ export const Wrapper = styled.li`
   display: grid;
   align-items: center;
   max-width: 100%;
-  grid-template-columns: 3fr 1fr 2fr 3fr;
+  grid-template-columns: 1fr 3fr 3fr 1fr 1fr;
   gap: 2%;
   padding-bottom: 10px;
   padding-top: 10px;

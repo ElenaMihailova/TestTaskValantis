@@ -80,10 +80,10 @@ export const Select=styled.select`
   border-radius: 0.25rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   box-shadow: none;
+  cursor: pointer;
 
   &:focus,
   &:not(:placeholder-shown) {
-    border-color: ${(props) => props.theme.colorGray};
     outline: 0;
   }
 `
