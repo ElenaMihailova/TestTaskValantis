@@ -63,3 +63,27 @@ export const Input = styled.input`
     outline: 0;
   }
 `;
+
+export const Select=styled.select`
+  display: block;
+  width: 197px;
+  height: 52px;
+  padding: 0.375rem 0.75rem;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: ${(props) => props.theme.colorBlackForText};
+  background-color: ${(props) => props.theme.colorWhite};
+  background-clip: padding-box;
+  border: 1px solid #bdbdbd;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  box-shadow: none;
+
+  &:focus,
+  &:not(:placeholder-shown) {
+    border-color: ${(props) => props.theme.colorGray};
+    outline: 0;
+  }
+`

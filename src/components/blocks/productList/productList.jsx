@@ -5,10 +5,10 @@ import {ProductDataContext} from '../../dataProviders/productDataProviders';
 import * as Styled from './style';
 
 const ProductList = () => {
-  const { products } = useContext(ProductDataContext);
-  
+  const {products} = useContext(ProductDataContext);
+
   if (!products || products.length === 0) {
-    return <div>Loading...</div>; 
+    return <div>Loading...</div>;
   }
 
   return (
