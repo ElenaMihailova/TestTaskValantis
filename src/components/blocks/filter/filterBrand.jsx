@@ -4,17 +4,12 @@ import * as Styled from './style';
 
 function FilterBrand({value, onChange, onFocus, onBlur}) {
   const {brands} = useContext(ProductDataContext);
-  console.log(brands);
   const brandsArray = Array.isArray(brands) ? brands : [];
 
   return (
     <Styled.Field>
       <Styled.Select
         id='brand'
-        value={value}
-        onChange={onChange}
-        onFocus={onFocus}
-        onBlur={onBlur}
       >
         <option value=''>Бренд</option>
         { brandsArray.map((brand, index) => (

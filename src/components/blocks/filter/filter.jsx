@@ -7,13 +7,6 @@ function Filter({applyFilters}) {
     name: false,
     price: false,
   });
-  const [selectedBrand, setSelectedBrand] = useState('');
-
-  const handleBrandChange = (e) => {
-    const {value} = e.target;
-    setSelectedBrand(value);
-    applyFilters({...inputState, brand: value});
-  };
 
   const handleInputChange = (e) => {
     const {id, value} = e.target;
@@ -43,12 +36,7 @@ function Filter({applyFilters}) {
   return (
     <Styled.Wrapper>
       <Styled.FieldWrapper>
-        <FilterBrand
-          value={selectedBrand}
-          onChange={handleBrandChange}
-          onFocus={handleInputFocus}
-          onBlur={handleInputBlur}
-        />
+        <FilterBrand/>
         {Object.entries(inputState).map(
           ([id, isfilled]) =>
             id !== 'brand' && (

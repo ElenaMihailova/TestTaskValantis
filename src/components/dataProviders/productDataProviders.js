@@ -5,10 +5,10 @@ export const ProductDataContext = createContext();
 
 const ProductDataProvider = ({children}) => {
   const [products, setProducts] = useState([]);
-  const [currentPage, setCurrentPage]=useState(1);
-  const [brands, setBrands]=useState(1);
-  const [isLoading, setIsLoading]=useState(true);
-  
+  const [currentPage, setCurrentPage] = useState(1);
+  const [brands, setBrands] = useState(1);
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     setIsLoading(true);
     getProducts(currentPage)
@@ -35,7 +35,7 @@ const ProductDataProvider = ({children}) => {
       .finally(() => {
         setIsLoading(false);
       });
-  }, [])
+  }, []);
 
   return (
     <ProductDataContext.Provider
