@@ -2,7 +2,7 @@ import axios from 'axios';
 import md5 from 'md5-js';
 import {API_URL, PASSWORD, LIMIT} from '../../const';
 
-const getAuthHeader = () => {
+export const getAuthHeader = () => {
   const timestamp = new Date().toISOString().split('T')[0].replace(/-/g, '');
   const authString = md5(`${PASSWORD}_${timestamp}`);
   return {'X-Auth': authString};
@@ -45,7 +45,7 @@ const getIds = async (offset, headers) => {
   return await fetchData('get_ids', {limit: LIMIT, offset}, headers);
 };
 
-const getItems = async (ids, headers) => {
+export const getItems = async (ids, headers) => {
   const products = await fetchData('get_items', {ids}, headers);
   const uniqueProductsMap = {};
   products.forEach((product) => {
