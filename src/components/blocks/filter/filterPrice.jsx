@@ -5,7 +5,8 @@ import useDebounce from '../../helpers/useDebounce';
 import * as Styled from './style';
 
 function FilterPrice() {
-  const {filterProducts} = useContext(ProductDataContext);
+  const {filterProducts}=useContext(ProductDataContext);
+  // eslint-disable-next-line no-use-before-define
   const [filterValue, setFilterValue] = useState('');
   const [isFilled, setIsFilled] = useState(false);
 
