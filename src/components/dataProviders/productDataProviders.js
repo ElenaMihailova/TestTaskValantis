@@ -43,6 +43,7 @@ const ProductDataProvider = ({children}) => {
       const filteredProducts = await filterProducts(filterField, filterValue);
       const productsWithDetails = await getItems(filteredProducts, getAuthHeader());
       setProducts(productsWithDetails);
+      console.log(productsWithDetails);
     } catch (error) {
       console.error('Error filtering products:', error);
     } finally {
