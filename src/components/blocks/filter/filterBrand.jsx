@@ -4,12 +4,21 @@ import * as Styled from './style';
 
 function FilterBrand() {
   const {brands, filterProducts} = useContext(ProductDataContext);
-  const brandsArray = Array.isArray(brands) ? brands : [];
+  let brandsArray = Array.isArray(brands) ? brands : [];
+
+  brandsArray = brandsArray.filter((brand) => brand !== null);
+
+  if (brandsArray.length > 0) {
+    brandsArray.unshift('-');
+  }
 
   const handleBrandChange = (e) => {
-    const {value} = e.target;
+    let {value} = e.target;
+
+    if (value === 'Не указан') {
+      value = null;
+    }
     filterProducts('brand', value);
-    console.log(value)
   };
 
   return (

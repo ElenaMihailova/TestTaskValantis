@@ -8,7 +8,7 @@ function FilterName() {
   const {filterProducts}=useContext(ProductDataContext);
   // eslint-disable-next-line no-use-before-define
   const [filterValue, setFilterValue] = useState('');
-  const [isFilled, setIsFilled] = useState(false);
+  const [isFilled, setIsFilled]=useState(false);
 
   const handleInputChange = useCallback(
     (value) => {

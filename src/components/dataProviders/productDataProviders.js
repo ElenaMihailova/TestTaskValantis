@@ -1,5 +1,12 @@
 import {useState, useEffect, createContext} from 'react';
-import {getProducts, getBrands, filterProducts, getItems, getAuthHeader} from '../helpers/getData';
+import { LIMIT } from '../../const';
+import {
+  getProducts,
+  getBrands,
+  filterProducts,
+  getItems,
+  getAuthHeader,
+} from '../helpers/getData';
 
 export const ProductDataContext = createContext();
 
@@ -7,13 +14,20 @@ const ProductDataProvider = ({children}) => {
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [brands, setBrands] = useState(1);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading]=useState(true);
+  const [isLastPage, setIsLastPage]=useState(false);
+  
 
   useEffect(() => {
     setIsLoading(true);
     getProducts(currentPage)
       .then((uniqueProducts) => {
         setProducts(uniqueProducts);
+        if (uniqueProducts.length < (LIMIT-1)) {
+          setIsLastPage(true);
+        } else {
+          setIsLastPage(false);
+        }
       })
       .catch((error) => {
         console.error('Error fetching data:', error);
@@ -41,20 +55,35 @@ const ProductDataProvider = ({children}) => {
     setIsLoading(true);
     try {
       const filteredProducts = await filterProducts(filterField, filterValue);
-      const productsWithDetails = await getItems(filteredProducts, getAuthHeader());
+      const productsWithDetails = await getItems(
+        filteredProducts,
+        getAuthHeader()
+      );
       setProducts(productsWithDetails);
-      console.log(productsWithDetails);
+      setCurrentPage(1);
+      if (productsWithDetails.length < (LIMIT-1)) {
+        setIsLastPage(true);
+      } else {
+        setIsLastPage(false);
+      }
     } catch (error) {
       console.error('Error filtering products:', error);
     } finally {
       setIsLoading(false);
     }
   };
-   
 
   return (
     <ProductDataContext.Provider
-      value={{products, brands, setCurrentPage, currentPage, isLoading, filterProducts: handleFilterProducts}}
+      value={{
+        products,
+        brands,
+        setCurrentPage,
+        currentPage,
+        isLoading,
+        filterProducts: handleFilterProducts,
+        isLastPage,
+      }}
     >
       {children}
     </ProductDataContext.Provider>

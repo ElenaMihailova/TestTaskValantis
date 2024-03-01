@@ -63,8 +63,7 @@ export const getBrands = async () => {
       {headers}
     );
 
-    const uniqueBrands = [...new Set(response.data.result)];
-
+    const uniqueBrands=[...new Set(response.data.result)];
     return uniqueBrands;
   } catch (error) {
     console.error('Error fetching brands:', error);
@@ -75,6 +74,7 @@ export const getBrands = async () => {
 export const filterProducts = async (filterField, filterValue) => {
   try {
     const headers = getAuthHeader();
+    
     const response = await axios.post(
       API_URL,
       {action: 'filter', params: {[filterField]: filterValue}},

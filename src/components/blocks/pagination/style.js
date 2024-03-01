@@ -43,5 +43,6 @@ export const Button = styled.button`
 
   &:disabled {
     background-color: transparent;
+    cursor: auto;
   }
 `;

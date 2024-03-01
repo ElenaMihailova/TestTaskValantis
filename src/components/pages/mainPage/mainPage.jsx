@@ -7,7 +7,7 @@ import {ProductDataContext} from '../../dataProviders/productDataProviders';
 import * as Styled from './style';
 
 function MainPage() {
-  const {currentPage, setCurrentPage, isLoading, filterProducts} = useContext(
+  const {currentPage, setCurrentPage, isLoading, filterProducts, isLastPage} = useContext(
     ProductDataContext
   );
 
@@ -31,6 +31,7 @@ function MainPage() {
         currentPage={currentPage}
         onNextPageClick={handleNextPageClick}
         onPrevPageClick={handlePrevPageClick}
+        isLastPage={isLastPage}
       />
     </Styled.Wrapper>
   );
