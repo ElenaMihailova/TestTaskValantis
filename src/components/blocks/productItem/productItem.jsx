@@ -4,6 +4,7 @@ import Title, {TitleLevel, TitleSize} from '../../ui/title/title';
 import * as Styled from './style';
 
 function ProductItem({product, index, currentPage}) {
+
   const renderBrand = (brand) => {
     return brand ? `${brand}` : '-';
   };

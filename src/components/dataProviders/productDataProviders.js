@@ -1,5 +1,5 @@
 import {useState, useEffect, createContext} from 'react';
-import { LIMIT } from '../../const';
+import {LIMIT} from '../../const';
 import {
   getProducts,
   getBrands,
@@ -14,16 +14,15 @@ const ProductDataProvider = ({children}) => {
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [brands, setBrands] = useState(1);
-  const [isLoading, setIsLoading]=useState(true);
-  const [isLastPage, setIsLastPage]=useState(false);
-  
+  const [isLoading, setIsLoading] = useState(true);
+  const [isLastPage, setIsLastPage] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
     getProducts(currentPage)
       .then((uniqueProducts) => {
         setProducts(uniqueProducts);
-        if (uniqueProducts.length < (LIMIT-1)) {
+        if (uniqueProducts.length < LIMIT - 1) {
           setIsLastPage(true);
         } else {
           setIsLastPage(false);
@@ -54,20 +53,45 @@ const ProductDataProvider = ({children}) => {
   const handleFilterProducts = async (filterField, filterValue) => {
     setIsLoading(true);
     try {
-      const filteredProducts = await filterProducts(filterField, filterValue);
+      const filteredProducts = await filterProducts(
+        filterField,
+        filterValue,
+        (currentPage - 1) * LIMIT
+      );
       const productsWithDetails = await getItems(
         filteredProducts,
         getAuthHeader()
       );
-      setProducts(productsWithDetails);
+
+      const paginatedProducts = [];
+      for (let i = 0; i < productsWithDetails.length; i += LIMIT) {
+        paginatedProducts.push(productsWithDetails.slice(i, i + LIMIT));
+      }
+
       setCurrentPage(1);
-      if (productsWithDetails.length < (LIMIT-1)) {
+      setProducts(paginatedProducts[0]);
+      console.log(productsWithDetails);
+
+      if (productsWithDetails.length < LIMIT - 1) {
         setIsLastPage(true);
       } else {
         setIsLastPage(false);
       }
     } catch (error) {
       console.error('Error filtering products:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const loadAllProducts = async () => {
+    setIsLoading(true);
+    try {
+      const allProducts = await getProducts(currentPage);
+      setProducts(allProducts);
+      setIsLastPage(false);
+    } catch (error) {
+      console.error('Error loading all products:', error);
     } finally {
       setIsLoading(false);
     }
@@ -83,6 +107,7 @@ const ProductDataProvider = ({children}) => {
         isLoading,
         filterProducts: handleFilterProducts,
         isLastPage,
+        loadAllProducts,
       }}
     >
       {children}

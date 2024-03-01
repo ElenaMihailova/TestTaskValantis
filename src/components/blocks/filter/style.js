@@ -24,6 +24,8 @@ export const FieldWrapper = styled.div`
 `;
 export const Field = styled.div`
   position: relative;
+  display: flex;
+  align-items: center;
 `;
 
 export const Label = styled.label`
@@ -64,7 +66,7 @@ export const Input = styled.input`
   }
 `;
 
-export const Select=styled.select`
+export const Select = styled.select`
   display: block;
   width: 197px;
   height: 52px;
@@ -86,4 +88,26 @@ export const Select=styled.select`
   &:not(:placeholder-shown) {
     outline: 0;
   }
-`
+`;
+
+export const Button = styled.button`
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  text-decoration: none;
+  text-align: center;
+  color: ${(props) => props.theme.colorBlackForText};
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 12px;
+  cursor: pointer;
+  background-color: ${(props) => props.theme.colorForButton};
+  transition: background-color 0.5s;
+  margin-left: 10px;
+
+  &:disabled {
+    background-color: transparent;
+    cursor: auto;
+  }
+`;

@@ -1,7 +1,12 @@
 import React from 'react';
 import * as Styled from './style.js';
 
-const Pagination = ({currentPage, onNextPageClick, onPrevPageClick, isLastPage}) => {
+const Pagination = ({
+  currentPage,
+  onNextPageClick,
+  onPrevPageClick,
+  isLastPage,
+}) => {
   return (
     <Styled.Wrapper>
       <Styled.List>
@@ -19,7 +24,11 @@ const Pagination = ({currentPage, onNextPageClick, onPrevPageClick, isLastPage})
         </Styled.Item>
 
         <Styled.Item>
-          <Styled.Button type='button' onClick={onNextPageClick} disabled={isLastPage}>
+          <Styled.Button
+            type='button'
+            onClick={onNextPageClick}
+            disabled={isLastPage}
+          >
             &gt;
           </Styled.Button>
         </Styled.Item>

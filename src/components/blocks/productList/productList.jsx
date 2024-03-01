@@ -1,11 +1,20 @@
-import {useContext} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import ProductItem from '../productItem/productItem';
 import {ProductDataContext} from '../../dataProviders/productDataProviders';
 
 import * as Styled from './style';
 
 const ProductList = () => {
-  const {products, currentPage} = useContext(ProductDataContext);
+  const {products, currentPage, isLoading} = useContext(ProductDataContext);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(isLoading);
+  }, [isLoading]);
+
+  if (loading || !products || products.length === 0) {
+    return <Styled.Wrapper>Loading...</Styled.Wrapper>;
+  }
 
   if (!products || products.length === 0) {
     return <div>Loading...</div>;
