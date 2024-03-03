@@ -1,11 +1,14 @@
+import React from 'react';
 import formatPrice from '../../helpers/formatPrice';
-import Title, {TitleLevel, TitleSize} from '../../ui/title/title';
+import Title, { TitleLevel, TitleSize } from '../../ui/title/title';
+import ProductItemProps from '../../types/ProductItemProps';
 
 import * as Styled from './style';
 
-function ProductItem({product, index, currentPage}) {
 
-  const renderBrand = (brand) => {
+
+function ProductItem({product, index, currentPage}: ProductItemProps) {
+  const renderBrand = (brand: string) => {
     return brand ? `${brand}` : '-';
   };
 

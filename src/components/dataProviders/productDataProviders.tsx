@@ -1,4 +1,4 @@
-import {useState, useEffect, createContext} from 'react';
+import React, {useState, useEffect, createContext, ReactNode} from 'react';
 import {LIMIT} from '../../const';
 import {
   getProducts,
@@ -7,20 +7,47 @@ import {
   getItems,
   getAuthHeader,
 } from '../helpers/getData';
+import ProductItemProps from '../types/ProductItemProps';
 
-export const ProductDataContext = createContext();
+interface ProductData {
+  products: ProductItemProps[];
+  brands: string[];
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
+  currentPage: number;
+  isLoading: boolean;
+  filterProducts: (filterField: string, filterValue: string) => void;
+  isLastPage: boolean;
+  loadAllProducts: () => void;
+}
 
-const ProductDataProvider = ({children}) => {
-  const [products, setProducts] = useState([]);
+interface ProductDataProviderProps {
+  children: ReactNode;
+}
+
+export const ProductDataContext = createContext<ProductData>({
+  products: [],
+  brands: [],
+  setCurrentPage: () => {},
+  currentPage: 1,
+  isLoading: true,
+  filterProducts: () => {},
+  isLastPage: false,
+  loadAllProducts: () => {},
+});
+
+const ProductDataProvider: React.FC = ({
+  children,
+}: ProductDataProviderProps) => {
+  const [products, setProducts] = useState<ProductItemProps[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [brands, setBrands] = useState(1);
+  const [brands, setBrands] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isLastPage, setIsLastPage] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
     getProducts(currentPage)
-      .then((uniqueProducts) => {
+      .then((uniqueProducts: ProductItemProps[]) => {
         setProducts(uniqueProducts);
         if (uniqueProducts.length < LIMIT - 1) {
           setIsLastPage(true);
@@ -39,7 +66,7 @@ const ProductDataProvider = ({children}) => {
   useEffect(() => {
     setIsLoading(true);
     getBrands()
-      .then((brandsData) => {
+      .then((brandsData: string[]) => {
         setBrands(brandsData);
       })
       .catch((error) => {
@@ -50,27 +77,25 @@ const ProductDataProvider = ({children}) => {
       });
   }, []);
 
-  const handleFilterProducts = async (filterField, filterValue) => {
+  const handleFilterProducts = async (
+    filterField: string,
+    filterValue: string
+  ) => {
     setIsLoading(true);
     try {
-      const filteredProducts = await filterProducts(
-        filterField,
-        filterValue,
-        (currentPage - 1) * LIMIT
-      );
+      const filteredProducts = await filterProducts(filterField, filterValue);
       const productsWithDetails = await getItems(
         filteredProducts,
         getAuthHeader()
       );
 
-      const paginatedProducts = [];
+      const paginatedProducts: ProductItemProps[][] = [];
       for (let i = 0; i < productsWithDetails.length; i += LIMIT) {
         paginatedProducts.push(productsWithDetails.slice(i, i + LIMIT));
       }
 
       setCurrentPage(1);
       setProducts(paginatedProducts[0]);
-      console.log(productsWithDetails);
 
       if (productsWithDetails.length < LIMIT - 1) {
         setIsLastPage(true);

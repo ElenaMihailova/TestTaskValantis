@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 import {TitleSize} from './title';
 
-export const StyledTitle = styled.h1`
+interface TitleProps {
+  $size?: string;
+}
+
+export const Title = styled.h1<TitleProps>`
   margin: 0;
   padding: 0;
   font-weight: ${(props) => {
@@ -27,3 +31,4 @@ export const StyledTitle = styled.h1`
     return fontSize;
   }};
 `;
+
