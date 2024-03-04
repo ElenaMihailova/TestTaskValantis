@@ -35,7 +35,7 @@ export const ProductDataContext = createContext<ProductData>({
   loadAllProducts: () => {},
 });
 
-const ProductDataProvider: React.FC = ({
+const ProductDataProvider: React.FC<ProductDataProviderProps> = ({
   children,
 }: ProductDataProviderProps) => {
   const [products, setProducts] = useState<ProductItemProps[]>([]);
@@ -47,12 +47,17 @@ const ProductDataProvider: React.FC = ({
   useEffect(() => {
     setIsLoading(true);
     getProducts(currentPage)
-      .then((uniqueProducts: ProductItemProps[]) => {
-        setProducts(uniqueProducts);
-        if (uniqueProducts.length < LIMIT - 1) {
-          setIsLastPage(true);
+      .then((uniqueProducts) => {
+        if (Array.isArray(uniqueProducts)) {
+          setProducts(uniqueProducts);
+          if (uniqueProducts.length < LIMIT - 1) {
+            setIsLastPage(true);
+          } else {
+            setIsLastPage(false);
+          }
         } else {
-          setIsLastPage(false);
+          setProducts([]);
+          setIsLastPage(true);
         }
       })
       .catch((error) => {
@@ -113,8 +118,13 @@ const ProductDataProvider: React.FC = ({
     setIsLoading(true);
     try {
       const allProducts = await getProducts(currentPage);
-      setProducts(allProducts);
-      setIsLastPage(false);
+      if (Array.isArray(allProducts)) {
+        setProducts(allProducts);
+        setIsLastPage(false);
+      } else {
+        setProducts([]);
+        setIsLastPage(true);
+      }
     } catch (error) {
       console.error('Error loading all products:', error);
     } finally {

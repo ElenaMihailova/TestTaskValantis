@@ -15,8 +15,9 @@ export const getAuthHeader = (): Headers => {
 
 const fetchData = async (action: string, params: any, headers: Headers) => {
   try {
-    const response = await axios.post(API_URL, {action, params}, {headers});
+    const response = await axios.post(API_URL, { action, params }, { headers });
     return response.data.result;
+
   } catch (error) {
     if (axios.isAxiosError(error)) {
       console.error('Error fetching data:', error);
@@ -37,9 +38,10 @@ export const getProducts = async (offset: number) => {
     const headers = getAuthHeader();
     const ids: number[] = await getIds(offset, headers);
 
-    const uniqueIds: number[] = [...new Set(ids)];
+    const uniqueIds = [...new Set(ids)];
 
-    if (uniqueIds.length > 0) {
+    if(uniqueIds.length > 0)
+    {
       const items = await getItems(uniqueIds, headers);
       return items;
     } else {
@@ -50,7 +52,8 @@ export const getProducts = async (offset: number) => {
   }
 };
 
-const getIds = async (offset: number, headers: Headers) => {
+const getIds = async (offset: number, headers: Headers) =>
+{
   return await fetchData('get_ids', {limit: LIMIT, offset}, headers);
 };
 
@@ -59,13 +62,14 @@ export const getItems = async (
   headers: Headers
 ): Promise<ProductItemProps[]> => {
   const products = await fetchData('get_items', { ids }, headers);
-  console.log(products)
   const uniqueProductsMap: { [id: number]: ProductItemProps } = {};
-  products.forEach((product: ProductItemProps) => {
-    uniqueProductsMap[product.product.id] = product;
+  products.forEach((product: ProductItemProps) =>
+  {
+    uniqueProductsMap[product.id] = product;
   });
   return Object.values(uniqueProductsMap);
 };
+
 
 export const getBrands = async (): Promise<string[]> => {
   try {
@@ -76,7 +80,7 @@ export const getBrands = async (): Promise<string[]> => {
       {headers}
     );
 
-    const uniqueBrands = (response.data.result as unknown[]).map((brand: unknown) => String(brand));
+    const uniqueBrands=[...new Set<string>(response.data.result)];
     return uniqueBrands;
   } catch (error) {
     console.error('Error fetching brands:', error);

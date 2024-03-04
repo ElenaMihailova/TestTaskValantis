@@ -1,4 +1,4 @@
-interface ProductItemProps {
+export interface ProductItemProps {
   product: {
     id: number;
     product: string;
@@ -8,5 +8,3 @@ interface ProductItemProps {
   index: number;
   currentPage: number;
 }
-
-export default ProductItemProps;
