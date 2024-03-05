@@ -7,18 +7,8 @@ import {
   getItems,
   getAuthHeader,
 } from '../helpers/getData';
-import ProductItemProps from '../types/ProductItemProps';
-
-interface ProductData {
-  products: ProductItemProps[];
-  brands: string[];
-  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
-  currentPage: number;
-  isLoading: boolean;
-  filterProducts: (filterField: string, filterValue: string) => void;
-  isLastPage: boolean;
-  loadAllProducts: () => void;
-}
+import { ProductItemProps } from '../types/ProductItemProps';
+import { ProductData } from '../types/ProductData';
 
 interface ProductDataProviderProps {
   children: ReactNode;

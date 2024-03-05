@@ -1,7 +1,7 @@
-import {useContext} from 'react';
+import React, {useContext} from 'react';
 import ProductList from '../../blocks/productList/productList';
 import Pagination from '../../blocks/pagination/pagination';
-import Filter from '../../blocks/filter//filter';
+import Filter from '../../blocks/filter/filter';
 import {ProductDataContext} from '../../dataProviders/productDataProviders';
 
 import * as Styled from './style';

@@ -1,7 +1,7 @@
 import React from 'react';
 import formatPrice from '../../helpers/formatPrice';
 import Title, { TitleLevel, TitleSize } from '../../ui/title/title';
-import ProductItemProps from '../../types/ProductItemProps';
+import { ProductItemProps } from '../../types/ProductItemProps';
 
 import * as Styled from './style';
 

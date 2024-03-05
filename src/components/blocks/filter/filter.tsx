@@ -1,3 +1,4 @@
+import React from 'react';
 import FilterBrand from './filterBrand';
 import FilterName from './filterName';
 import FilterPrice from './filterPrice';

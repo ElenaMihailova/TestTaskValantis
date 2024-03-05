@@ -1,7 +1,7 @@
 import axios from 'axios';
 import md5 from 'md5-js';
 import { API_URL, PASSWORD, LIMIT } from '../../const';
-import ProductItemProps from '../types/ProductItemProps';
+import { ProductItemProps } from '../types/ProductItemProps';
 
 export interface Headers {
   [key: string]: string;
@@ -45,7 +45,7 @@ export const getProducts = async (offset: number) => {
       const items = await getItems(uniqueIds, headers);
       return items;
     } else {
-      return {items: []};
+      return [];
     }
   } catch (error) {
     throw error;

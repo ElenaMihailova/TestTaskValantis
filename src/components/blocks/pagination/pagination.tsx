@@ -1,12 +1,13 @@
 import React from 'react';
-import * as Styled from './style.js';
+import {ProductData} from '../../types/ProductData';
+import * as Styled from './style';
 
 const Pagination = ({
   currentPage,
   onNextPageClick,
   onPrevPageClick,
   isLastPage,
-}) => {
+}: ProductData) => {
   return (
     <Styled.Wrapper>
       <Styled.List>
